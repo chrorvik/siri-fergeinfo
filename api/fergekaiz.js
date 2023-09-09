@@ -48,10 +48,10 @@ export default async (req, res) => {
     const month = date.getMonth() + 1;
 
     let scrapingUrl = `https://frammr.travelplanner.no/scripts/TravelMagic/TravelMagicWE.dll/svar?lang=nn&referrer=frammr.no&dep1=&theme=&from=Vestnes+ferjekai+%28Vestnes%29&to=Molde+ferjekai+%28Molde%29&Time=${hh}:${mm}&Date=${day}.${month}.${year}&now=on&search=Søk&referrer=frammr.no&lang=nn&dep1=&theme=&direction=1&search=Søk&result=0`;
-    let finalString = 'Neste i fra Vestnes: ';
+    let finalString = 'Neste ferge ifra Vestnes: ';
     
     if (closest[0] === 'molde') {
-      finalString = 'Neste i fra Molde: '
+      finalString = 'Neste ferge ifra Molde: '
       scrapingUrl = `https://frammr.travelplanner.no/scripts/TravelMagic/TravelMagicWE.dll/svar?lang=nn&referrer=frammr.no&dep1=&theme=&from=Molde+ferjekai+%28Molde%29&to=Vestnes+ferjekai+%28Vestnes%29&Time=${hh}:${mm}&Date=${day}.${month}.${year}&now=on&search=Søk&referrer=frammr.no&lang=nn&dep1=&theme=&direction=1&search=Søk&result=0`;
     }
 
