@@ -44,8 +44,13 @@ export default async (req, res) => {
       }
     }
     const date = new Date();
-    const { getHours: hh, getMinutes: mm, getDate: day, getMonth, getFullYear: year } = date;
+    const hh = date.getHours();
+    const mm = date.getMinutes();
+    const day = date.getDate();
     const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    console.log(`Tid og dato: ${day}.${month}.${year} ${hh}:${mm}`);
 
     let scrapingUrl = `https://frammr.travelplanner.no/scripts/TravelMagic/TravelMagicWE.dll/svar?lang=nn&referrer=frammr.no&dep1=&theme=&from=Vestnes+ferjekai+%28Vestnes%29&to=Molde+ferjekai+%28Molde%29&Time=${hh}:${mm}&Date=${day}.${month}.${year}&now=on&search=Søk&referrer=frammr.no&lang=nn&dep1=&theme=&direction=1&search=Søk&result=0`;
     let finalString = 'Ferge fra Vestnes: ';
@@ -54,7 +59,7 @@ export default async (req, res) => {
       finalString = 'Ferge fra Molde: '
       scrapingUrl = `https://frammr.travelplanner.no/scripts/TravelMagic/TravelMagicWE.dll/svar?lang=nn&referrer=frammr.no&dep1=&theme=&from=Molde+ferjekai+%28Molde%29&to=Vestnes+ferjekai+%28Vestnes%29&Time=${hh}:${mm}&Date=${day}.${month}.${year}&now=on&search=Søk&referrer=frammr.no&lang=nn&dep1=&theme=&direction=1&search=Søk&result=0`;
     }
-
+  
     try {
       const htmlString = await cloudscraper({ uri: scrapingUrl, headers: { 'User-Agent': 'Mozilla/5.0' } });
       const $ = load(htmlString);
