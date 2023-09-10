@@ -43,7 +43,9 @@ export default async (req, res) => {
         console.log("closest:", name)
       }
     }
-    const date = new Date();
+    const now = new Date();
+    const date = new Date(now.toLocaleString("nb-NO", {timeZone: "Europe/Oslo"}));
+    
     const hh = date.getHours();
     const mm = date.getMinutes();
     const day = date.getDate();
